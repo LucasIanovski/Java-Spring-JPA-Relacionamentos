@@ -1,13 +1,13 @@
-package br.com.glaucotodesco.jparelacionamentos.model;
+﻿package br.com.glaucotodesco.jparelacionamentos.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +35,12 @@ public class Curso {
     @JoinColumn(name = "instrutor_id", nullable = false)
     private Instrutor instrutor;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
     @ManyToMany(mappedBy = "cursos")
     private Set<Aluno> alunos = new LinkedHashSet<>();
 }
+
+

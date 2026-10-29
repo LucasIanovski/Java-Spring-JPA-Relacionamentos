@@ -1,4 +1,4 @@
-package br.com.glaucotodesco.jparelacionamentos.dto;
+﻿package br.com.glaucotodesco.jparelacionamentos.dto;
 
 import br.com.glaucotodesco.jparelacionamentos.model.Aluno;
 import br.com.glaucotodesco.jparelacionamentos.model.Curso;
@@ -11,6 +11,7 @@ public record CursoResponse(
         String nome,
         Integer cargaHoraria,
         InstrutorResumoResponse instrutor,
+        CategoriaResumoResponse categoria,
         List<AlunoResumoResponse> alunos
 ) {
     public static CursoResponse from(Curso curso) {
@@ -24,6 +25,7 @@ public record CursoResponse(
                 curso.getNome(),
                 curso.getCargaHoraria(),
                 InstrutorResumoResponse.from(curso.getInstrutor()),
+                CategoriaResumoResponse.from(curso.getCategoria()),
                 alunos
         );
     }
